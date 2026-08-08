@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotoParts | Fast Bike Spare Parts Delivery</title>
+    <style>
+        /* --- GLOBAL STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff4d4d;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+        }
+        nav a:hover {
+            color: #ff4d4d;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://unsplash.com') no-repeat center center/cover;
+            color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        /* --- PARTS FILTER WIDGET --- */
+        .search-container {
+            background: #fff;
+            max-width: 800px;
+            margin: -40px auto 40px auto;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .search-container h3 {
+            margin-bottom: 15px;
+            color: #1a1a1a;
+            text-align: center;
+        }
+        .filter-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .filter-group select, .filter-group button {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .filter-group button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .filter-group button:hover {
+            background-color: #e60000;
+        }
+
+        /* --- VISUAL CATEGORIES --- */
+        .categories {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .categories h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .category-card {
+            background: #fff;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-color: #ff4d4d;
+        }
+        .category-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        /* --- TRUST BANNER --- */
+        .trust-banner {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        .trust-grid {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1000px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .trust-item h4 {
+            color: #ff4d4d;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header>
+        <div class="logo">🏍️ MotoParts</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Categories</a>
+            <a href="#">Track Order</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Genuine Bike Spare Parts. Delivered Fast.</h1>
+        <p>Enter your bike details below to find 100% compatible parts.</p>
+    </section>
+
+    <!-- SEARCH & FILTER WIDGET -->
+    <section class="search-container">
+        <h3>Find Parts For Your Bike</h3>
+        <div class="filter-group">
+            <select id="bike-year">
+                <option value="">Select Year</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+            </select>
+            
+            <select id="bike-make" disabled>
+                <option value="">Select Make</option>
+            </select>
+            
+            <select id="bike-model" disabled>
+                <option value="">Select Model</option>
+            </select>
+            
+            <button id="search-btn" disabled>Find Parts</button>
+        </div>
+    </section>
+
+    <!-- VISUAL CATEGORIES -->
+    <section class="categories">
+        <h2>Browse by Category</h2>
+        <div class="grid">
+            <div class="category-card">
+                <div class="category-icon">⚙️</div>
+                <h3>Engine Parts</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🛑</div>
+                <h3>Brakes & Rotors</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">⛓️</div>
+                <h3>Drivetrain & Chains</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">💡</div>
+                <h3>Electricals & Lights</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST & DELIVERY BANNER -->
+    <section class="trust-banner">
+        <div class="trust-grid">
+            <div class="trust-item">
+                <h4>⚡ Fast Delivery</h4>
+                <p>Same-day dispatch on orders before 2 PM</p>
+            </div>
+            <div class="trust-item">
+                <h4>🛡️ 100% Fit Guarantee</h4>
+                <p>Free returns if the part doesn't fit your bike</p>
+            </div>
+            <div class="trust-item">
+                <h4>📞 Expert Support</h4>
+                <p>Talk to real mechanics for ordering assistance</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- JAVASCRIPT FOR DYNAMIC FILTERING -->
+    <script>
+        // Mock data mapping makes to models
+        const brandData = {
+            "Yamaha": ["YZF-R1", "MT-07", "FZ25"],
+            "Honda": ["CBR1000RR", "CB300R", "Activa"],
+            "Royal Enfield": ["Classic 350", "Interceptor 650", "Himalayan"]
+        };
+
+        const yearSelect = document.getElementById('bike-year');
+        const makeSelect = document.getElementById('bike-make');
+        const modelSelect = document.getElementById('bike-model');
+        const searchBtn = document.getElementById('search-btn');
+
+        // Step 1: When Year is selected, enable Make
+        yearSelect.addEventListener('change', function() {
+            if (this.value) {
+                makeSelect.disabled = false;
+                // Populate makes
+                makeSelect.innerHTML = '<option value="">Select Make</option>';
+                Object.keys(brandData).forEach(make => {
+                    makeSelect.innerHTML += <option value="${make}">${make}</option>;
+                });
+            } else {
+                resetFilters(true, true, true);
+            }
+        });
+
+        // Step 2: When Make is selected, enable Model
+        makeSelect.addEventListener('change', function() {
+            if (this.value) {
+                modelSelect.disabled = false;
+                modelSelect.innerHTML = '<option value="">Select Model</option>';
+                
+                // Populate models based on chosen make
+                const models = brandData[this.value];
+                models.forEach(model => {
+                    modelSelect.innerHTML += <option value="${model}">${model}</option>;
+                });
+            } else {
+                resetFilters(false, true, true);
+            }
+        });
+
+        // Step 3: When Model is selected, enable Search Button
+        modelSelect.addEventListener('change', function() {
+            searchBtn.disabled = !this.value;
+        });
+
+        // Search Action
+        searchBtn.addEventListener('click', function() {
+            alert(Searching parts for: ${yearSelect.value} ${makeSelect.value} ${modelSelect.value});
+        });
+
+        function resetFilters(resetMake, resetModel, disableBtn) {
+            if (resetMake) {
+                makeSelect.innerHTML = '<option value="">Select Make</option>';
+                makeSelect.disabled = true;
+            }
+            if (resetModel) {
+                modelSelect.innerHTML = '<option value="">Select Model</option>';
+                modelSelect.disabled = true;
+            }
+            if (disableBtn) {
+                searchBtn.disabled = true;
+            }
+        }
+    </script>
+</body>
+</html>
